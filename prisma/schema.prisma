@@ -26,4 +26,16 @@ model User {
   role      UserRole
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  travels   Travel[]
+}
+
+model Travel {
+  id          String   @id @default(uuid())
+  startDate   DateTime
+  endDate     DateTime
+  destination String
+  touristId   String
+  tourist     User     @relation(fields: [touristId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
